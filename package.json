@@ -1,0 +1,26 @@
+{
+  "name": "genai-career-assistant",
+  "version": "1.0.0",
+  "description": "A full stack AI-powered career assistant that helps users analyze resumes, match job descriptions, identify skill gaps, and prepare for interviews using modern technologies like React, Node.js, JWT, and Gemini AI.",
+  "homepage": "https://github.com/Thandupsherpa/GenAI-Career-Assistant#readme",
+  "bugs": {
+    "url": "https://github.com/Thandupsherpa/GenAI-Career-Assistant/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thandupsherpa/GenAI-Career-Assistant.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.1"
+  }
+}
