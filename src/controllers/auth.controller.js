@@ -55,6 +55,24 @@ async function registerUserController(req,res) {
     )
 }
 
+async function loginUserController(req,res){
+    const {username,email,password} = req.body;
+
+    if(!username || !email || !password){
+        return res.status(400).json({
+            message:" Pllease provide Username, email, and password !"
+        })
+    }
+
+    const isUserLoggedIn = await userModel.findOne({
+        $or:[
+            {username},
+            {email}
+        ]
+    })
+}
+
 module.exports = {
-    registerUserController
+    registerUserController,
+    loginUserController
 }
