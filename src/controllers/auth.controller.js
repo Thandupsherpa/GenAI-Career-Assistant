@@ -55,7 +55,48 @@ async function registerUserController(req,res) {
     )
 }
 
+
+/**
+ * @name loginUserController
+ * @description Login a user, expects username, email and password in the request body
+ * @access Public
+ */
 async function loginUserController(req,res){
+
+    const {email, password} = req.body;
+
+    const user = await userModel.findOne({email})
+
+    if(!user){
+        return res.status(400).json({
+            message:"Invalid or password"
+        })
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+
+    if(!isPasswordValid){
+        return res.status().json({
+            message:"Invalid or password"
+        })
+    }
+
+    const token  = jwt.sign(
+        {id:user._id, username:user.username},
+        process.env.JWT_SECRET,
+        {expiresIn:"1d"}
+    )
+
+    res.cookie("token",token)
+    res.status(200).json({
+        message:"User loggedIn Successfully",
+        user:{
+            id:user._id,
+            username:user.username,
+            email:user.email
+        }
+    })
+
 
 }
 
@@ -63,9 +104,7 @@ async function LogoutUserController(req,res){
 
 }
 
-
 module.exports = {
     registerUserController,
-    loginUserController,
-    LogoutUserController
+    loginUserController
 }
